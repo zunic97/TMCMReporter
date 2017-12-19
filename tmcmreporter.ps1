@@ -1,5 +1,5 @@
-$starttime='2017-11-01';
-$endtime='2017-11-30';
+$starttime='2017-11-01'; # start time for time span in reports
+$endtime='2017-11-30'; # end time for time span in reports
 $timeresolution=10; # time slot aggregation or resolution; month=7, day=10, minute=16
 $dbconfiguration=@{
     db_server=''; # SQL SERVER NAME OR IP ADDRESS
@@ -8,6 +8,7 @@ $dbconfiguration=@{
     db_pass=''; # DB PASS
 };
 
+# list of SQL queries used to get TMCM datasets of interest
 $queries=@{
 	# Malware detections grouped by datetime, malware name
 	"MalwareDetectionsBy-Date-Name"="SELECT CONVERT(char($timeresolution), CLF_LogGenerationTime, 20) AS 'DateTime', 
@@ -175,6 +176,8 @@ $queries=@{
 	GROUP BY C.DisplayName, E.DisplayName, F.EI_ProductVersion"
 }
 
+# EXECUTE ALL DEFINED SQL QUERIES
+# OUTPUT EACH SQL QUERY INTO CSV FILE, ALL LOCATED IN FOLDER TMCM_CSVs
 $currentpath = split-path -parent $MyInvocation.MyCommand.Definition # path of currently executing script
 $csvpath="$($currentpath)\TMCM_CSVs";
 If (!(Test-Path $csvpath)) {New-Item $csvpath -type directory}
