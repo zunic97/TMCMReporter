@@ -1,5 +1,21 @@
-$starttime='2017-11-01'; # start time for time span in reports
-$endtime='2017-11-30'; # end time for time span in reports
+<#
+.SYNOPSIS
+	Generates CSV datasets from Trend Micro Control Manager (TMCM) database, 
+	suitable for BI analysis in any of the popular tools (i.e. PowerBI)
+.DESCRIPTION
+	Connects to MSSQL TMCM database and performs a series of SQL queries,
+	the results being dumped into standard CSV files (folder TMCM_CSVs relative to script path).
+	These CSV files represent datasets (mostly malware detection metrics grouped by 
+	various dimensions: datetime, malware name, server name, etc.), which can be further
+	processed by any BI analysis tool (Excel Pivot tables, PowerBI, etc).
+.NOTES
+	Configure database connection and other parameters below.
+.LINK
+	https://github.com/veracompadriatics/TMCMReporter
+#>
+
+$starttime='2017-11-01'; # start time to include data
+$endtime='2017-11-30'; # end time to include data
 $timeresolution=10; # time slot aggregation or resolution; month=7, day=10, minute=16
 $dbconfiguration=@{
     db_server=''; # SQL SERVER NAME OR IP ADDRESS
