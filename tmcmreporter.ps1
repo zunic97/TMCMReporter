@@ -10,6 +10,7 @@
 	processed by any BI analysis tool (Excel Pivot tables, PowerBI, etc).
 .NOTES
 	Configure database connection and other parameters below.
+	Any errors will be stored in a log file in the same location as the script.	Logfile name: <db_name>.log
 .LINK
 	https://github.com/veracompadriatics/TMCMReporter
 #>
